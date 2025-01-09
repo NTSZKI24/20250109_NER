@@ -1,6 +1,6 @@
 "use client";
 
-import { Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 export interface ICars {
     id: number
@@ -16,7 +16,22 @@ export default function CarsDisplay({
 }) {
     return (
         <Row>
-
+            {cars.map(car => (
+                <Col key={car.id}>
+                    <Card>
+                        {car.image && (
+                        <Card.Img src={car.image} variant="top"/>
+                        )}
+                        <Card.Body>
+                            <Card.Title>{car.brand}</Card.Title>
+                            <Card.Text>
+                                {car.model}
+                            </Card.Text>
+                            <Button variant="primary">Open</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            ))}
         </Row>
     )
 }
