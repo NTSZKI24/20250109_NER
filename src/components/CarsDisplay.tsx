@@ -27,7 +27,7 @@ export default function CarsDisplay({
                             <Card.Text>
                                 {car.model}
                             </Card.Text>
-                            <Button variant="primary">Open</Button>
+                            <Button variant="danger">Törlés</Button>
                         </Card.Body>
                     </Card>
                 </Col>

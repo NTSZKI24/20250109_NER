@@ -18,18 +18,6 @@ export default function Page() {
             brand: "Ferrari",
             model: "SF90",
 
-        },
-        {
-            id: 3,
-            brand: "Porsche",
-            model: "911 GT3 RS",
-
-        },
-        {
-            id: 4,
-            brand: "Audi",
-            model: "A8",
-
         }
 
     ]); //use clientes a componens csak akkor
@@ -44,7 +32,9 @@ export default function Page() {
             <Col xs={12}>5</Col>
             <Col xs={6}>6</Col>
             <hr />
-                <AddCar />
+                <AddCar cars={cars} setCars={(data: ICars[]) => {
+                    setCars([...data])
+                }} />
             <hr />
             <Col xs={10}>
                 <CarsDisplay cars={cars} />
