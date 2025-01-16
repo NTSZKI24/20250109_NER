@@ -37,7 +37,9 @@ export default function Page() {
                 }} />
             <hr />
             <Col xs={10}>
-                <CarsDisplay cars={cars} />
+                <CarsDisplay cars={cars} setCars={(data: ICars[]) =>  {
+                    setCars([...data])
+                }} />
             </Col>
         </Row>
         
