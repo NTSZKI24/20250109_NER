@@ -7,10 +7,10 @@ import UserDisplay from "@/components/UserDisplay";
 import { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 
-export interface IUser{
-    id: Number,
-    firstName: String,
-    lastName: String
+export interface IUser {
+    id: number, 
+    firstName: string, 
+    lastName: string 
 }
 
 export default function Page(){
@@ -18,7 +18,7 @@ export default function Page(){
     useEffect(() => {
         async function fetchUsers(){
             const data = await fetch("https://dummyjson.com/users");
-            const initUsers = await data.json() as IUser[]
+            const initUsers = (await data.json()).users as IUser[]
 
             setUsers([...initUsers])
         }
