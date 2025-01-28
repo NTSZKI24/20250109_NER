@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tsparticles/react": "^3.0.0",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "next": "15.1.4",
     "react": "^19.0.0",

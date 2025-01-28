@@ -1,40 +1,61 @@
-import { ITodo } from "@/app/todos/page";
-import { Card, Col, Row, Button } from "react-bootstrap";
+"use client";
 
-export default function TodosDisplay({
+import { BaseSyntheticEvent } from "react";
+import { Button, Card, Col, Row } from "react-bootstrap"
+
+export interface ITodo{
+
+    id: number
+    userId: number
+    title: string
+    completed: boolean
+}
+export default function TodoDisplay({
     todos,
     setTodos
-} : {
-    todos: ITodo[]
+}: {
+    todos: ITodo[],
     setTodos: Function
-}) {
-    const handleDelete = async (id: number) => {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        });
-        setTodos((prevTodos: ITodo[]) => prevTodos.filter(todo => todo.id !== id));
-    };
+}){
 
-    return (
+    function DeleteTodo(event: BaseSyntheticEvent){
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
+        const formValues = Object.fromEntries(formData);
+
+        fetch(`https://jsonplaceholder.typicode.com/todos/${formValues.id}`, {
+            method: "DELETE"
+                
+        }).then((response) => {
+            console.log(response)
+            response.json().then((json) => {
+                    console.log(json)
+            })
+        })
+    }
+    
+    return(
         <Col xs={12}>
             <Row>
-                {todos.map((todo) => (
-                    <Col key={todo.id} xs={3}>
+                {todos.map((todo) =>(
+                <Col key={todo.id} xs={3}>
                         <Card>
-                            <Card.Title>{todo.title}</Card.Title>
-                            <Card.Text>
-                                {todo.completed ? 'Készen van' : 'Nincsen készen'}
-                            </Card.Text>
-                            <Button variant="danger" onClick={() => handleDelete(todo.id)}>
-                                Törlés
-                            </Button>
+                            <Card.Body>
+                                <Card.Title>{todo.title}</Card.Title>
+                                <Card.Text>
+                                    {todo.completed ? 'Készen van' : 'Nincs kész'}
+                                </Card.Text>
+                                <Button
+                                     
+                                >vvcds</Button>
+                                
+                            </Card.Body>
                         </Card>
-                    </Col>
+                    </Col> 
                 ))}
             </Row>
+            
+            
         </Col>
     )
 }

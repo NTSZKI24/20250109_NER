@@ -25,6 +25,7 @@ export default function Page(){
         fetchTodos()
     }, [])
 
+
     return(
         <Row>
             <AddTodo todos={todos} setTodos={(data:ITodo[]) =>  {
